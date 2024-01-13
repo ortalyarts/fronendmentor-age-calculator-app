@@ -40,7 +40,6 @@ btnSubmit.addEventListener("click", function () {
 //label-invalid
   function addError(idName) {
     let invalidMessage = idName.parentNode.querySelector(".invalid-message");
-    console.log(invalidMessage);
     invalidMessage.classList.add("activeMessage");
     invalidMessage.style.maxHeight = invalidMessage.scrollHeight + "px";  // animating the appiarence of the error message
     idName.parentNode
@@ -57,6 +56,16 @@ btnSubmit.addEventListener("click", function () {
       .querySelector("label")
       .classList.remove("label-invalid");
     idName.classList.remove("input-invalid");
+  }
+  function addMainError(){
+    mainErrorHolder.classList.add("activeMessage");
+    mainErrorHolder.style.maxHeight = mainErrorHolder.scrollHeight + "px"; // animating the appiarence of the error message
+    for(i = 0; i < allInvalidMessages.length; i++) {
+      allInvalidMessages[i].classList.remove("activeMessage");
+    }
+    resultDays.innerHTML = "- -";
+    resultMonths.innerHTML = "- -";
+    resultYears.innerHTML = "- -";
   }
 
   var dBirthIsValid =
@@ -84,14 +93,13 @@ btnSubmit.addEventListener("click", function () {
   }
 
   if (dBirthIsValid && mBirthIsValid && yBirthIsValid) {
-    var dateNew = new Date(yBirth, mBirth - 1, dBirth); 
+    var dateNew = new Date(yBirth, mBirth - 1, dBirth);
     if (
       dateNew.getFullYear() == yBirth &&
       dateNew.getMonth() + 1 == mBirth &&
       dateNew.getDate() == dBirth &&
       dateNew <= date
     ) {
-      
       // count up animation
       function animateValue(obj, start, end, duration) {
         let startTimestamp = null;
@@ -129,23 +137,16 @@ btnSubmit.addEventListener("click", function () {
 
       mainErrorHolder.classList.remove("activeMessage");
 
-      animateValue(resultDays, 0, d, 1500); // animating the final results
+      animateValue(resultDays, 0, d, 1000); // animating the final results
       animateValue(resultMonths, 0, m, 1000);
-      animateValue(resultYears, 0, y, 2000);
+      animateValue(resultYears, 0, y, 1000);
 
     } else {
       //if the date is invalid (day=33, month>12, in the future)
-      mainErrorHolder.classList.add("activeMessage");
+      addMainError();
     }
   } else if (!dBirthIsValid && !mBirthIsValid && !yBirthIsValid) {
-    mainErrorHolder.classList.add("activeMessage");
-    mainErrorHolder.style.maxHeight = mainErrorHolder.scrollHeight + "px"; // animating the appiarence of the error message
-    for(i = 0; i < allInvalidMessages.length; i++) {
-      allInvalidMessages[i].classList.remove("activeMessage");
-    }
-    resultDays.innerHTML = "- -";
-    resultMonths.innerHTML = "- -";
-    resultYears.innerHTML = "- -";
+    addMainError();
   } else {
     mainErrorHolder.classList.remove("activeMessage");
     resultDays.innerHTML = "- -";
