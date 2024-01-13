@@ -1,0 +1,232 @@
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body, h1, h2, h3, h4, p, figure, blockquote, dl, dd, ul {
+  margin: 0;
+}
+html {
+    scroll-behavior: smooth;
+  }
+  /* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+img {
+  vertical-align: middle;
+}
+/* General STYLE */
+:root {
+
+    --color1:hsl(0, 0%, 100%);
+    --color2:hsl(259, 100%, 65%);
+    --color3:hsl(0, 100%, 67%);
+    --color4: hsl(0, 0%, 94%);
+    --color5:hsl(0, 0%, 86%);
+    --color6:hsl(0, 1%, 44%);
+    --color7:hsl(0, 0%, 8%);
+    --gradient1:linear-gradient(0deg, hsl(240, 73%, 65%), hsl(273, 75%, 66%));
+    --sansserif: 'Poppins', sans-serif;
+}
+h1, h2, h3, ul {
+  padding:0;
+}
+body {
+    text-rendering: optimizeSpeed;
+    text-align:left; 
+    font-family: var(--sansserif);
+    background:var(--color5);
+    background-size: contain;
+    padding:0rem 1.5rem 1rem 1.5rem;
+    min-height: 100vh; 
+    display:flex; flex-direction:column; 
+}
+
+main {
+  max-width:21.438rem;
+  background: var(--color1) ;
+  margin: auto;
+  padding: 2rem 1.5rem;
+  border-radius: 1.2rem 1.2rem 7rem 1.2rem;
+  position:relative;
+  display:grid;
+}
+main p {
+font-size:0.81rem;
+line-height:1.3rem;
+color:var(--color2);
+padding:0 0 1rem 0;
+}
+.form-holder {
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap:1.2rem;
+}
+.input-holder label {
+  color:var(--color6);
+  font-size:0.75rem;
+  letter-spacing: 0.1rem;
+  line-height:2rem;
+  font-weight:700;
+  transition: 0.5s;
+}
+.input-holder input{
+  border-radius:0.4rem;
+  border: 1px solid var(--color4);
+  font-size:1.2rem;
+  font-weight:700;
+  letter-spacing:0.02rem;
+  color: var(--color7);
+  padding:0.75rem 1rem;
+  width:100%;
+}
+.input-holder input:focus, .input-holder input:active { 
+  border-color: var(--color2) !important;
+  outline: none;
+}
+
+::placeholder {
+  color: var(--color6);
+  opacity: 0.7; /* Firefox */
+}
+.button-holder {
+  width:100%;
+  display:grid;
+  justify-items: center;
+}
+.button-holder {
+  position: relative;
+  z-index: 1;
+  
+  &:before {
+      border-top: 2px solid var(--color4);
+      content:"";
+      margin: 0 auto; /* this centers the line to the full width specified */
+      position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
+      top: 57%; left: 0; right: 0; bottom: 0;
+      z-index: -1;
+  }
+}
+#submit {
+  width:4rem;
+  height:4rem;
+  background:var(--color2);
+  transition: 0.4s;
+  color:white;
+  font-size:0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  padding:1.1rem 0;
+  border:none;
+  cursor:pointer;
+  border-radius:100%;
+}
+#submit:hover {
+  background: var(--color7);
+}
+#submit img {
+  height:1.5rem;
+  width:auto;;
+}
+/* Invalid message */
+.input-invalid { 
+  border: 1px solid red !important;
+}
+.activeMessage {
+  display:block !important;
+}
+.invalid-message, #main-error-holder {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  display:none;
+  color: var(--color3);
+  font-size: 0.7rem;
+  text-align: left;
+  font-weight: 500 ;
+  font-style: italic;
+  padding-top:0.4rem;
+  transition: 0.4s;
+}
+.label-invalid {
+  color: var(--color3) !important;
+}
+/* End of Invalid message */
+.result {
+  display:grid;
+}
+.result p{
+  color:var(--color7);
+  font-size:3.3rem;
+  line-height:6rem;
+  letter-spacing:-0.1rem;
+  font-style: italic;
+  font-weight:800;
+  display:inline-block;
+  width:100%;
+}
+.result span{
+  display:inline-block;
+  /* width: 20%; */
+  color:var(--color2);
+}
+
+footer {
+  text-align: center;
+  font-size:0.7rem;
+}
+
+@media screen and (min-width:45rem) {
+  main {
+    max-width:52.5rem;
+    margin-top:9.875rem;
+    padding: 2.813rem 3.5rem;
+    border-radius: 1.2rem 1.2rem 12rem 1.2rem;
+    position:relative;
+    display:grid;
+  }
+  .form-holder {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap:2rem;
+  }
+  .input-holder label {
+    font-size:0.8rem;
+    letter-spacing: 0.2rem;
+    line-height:2.3rem;
+  }
+  .input-holder input{
+    border-radius:0.4rem;
+    font-size:1.9rem;
+    letter-spacing:0.02rem;
+    padding:0.75rem 1.5rem;
+  }
+  .button-holder {
+    justify-items: right;
+    margin-top:-1rem;
+  }
+  #submit {
+    width:6rem;
+    height:6rem;
+    padding:1.625rem 0;
+  }
+  #submit img {
+    height:2.75rem;
+    width:auto;;
+  }
+  .result {
+    margin-top:0.625rem;
+  }
+  .result p{
+    font-size:6.5rem;
+    line-height:6rem;
+  }
+  .result span{
+    margin-right:-0.8rem;
+  }
+}
